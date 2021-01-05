@@ -2,10 +2,23 @@
   "courses": [
     {
       "id": 1,
-      "title": "Angular 9 Fundamentals",
-      "description": "Learn the fundamentals of Angular 9",
-      "percentComplete": 26,
-      "favorite": true
+      "title": "Angular 9 Workshop",
+      "description": "Lukas Ruebelkke is on the lead",
+      "percentComplete": 60,
+      "favorite": false
+    },
+    {
+      "title": "Rust for JS developers",
+      "description": "Lukas Ruebelkke is not on the lead this time :/",
+      "favorite": true,
+      "id": 3
+    },
+    {
+      "title": "Javascript the Really HARD parts",
+      "description": "Lukas Ruebelkke is on the lead again bros",
+      "percentComplete": 45,
+      "favorite": false,
+      "id": 4
     }
   ]
 }

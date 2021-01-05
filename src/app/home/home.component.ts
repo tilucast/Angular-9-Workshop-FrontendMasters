@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
 
   selectCourse(course){
     this.currentCourse = course
-    console.log(course)
   }
 
   ngOnInit(): void {

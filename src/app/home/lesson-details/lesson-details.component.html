@@ -1,0 +1,7 @@
+<mat-card>
+    <mat-card-header>DEBUG</mat-card-header>
+    <mat-card-content>
+        <span *ngIf="lesson; else select">{{lesson.title}}</span>
+        <ng-template #select>Select a course</ng-template>
+    </mat-card-content>
+</mat-card>

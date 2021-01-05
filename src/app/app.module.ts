@@ -11,6 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesService } from './common/services/courses.service';
 import { LessonsService } from './common/services/lessons.service';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { LessonsListComponent } from './home/lessons-list/lessons-list.component';
+import { LessonDetailsComponent } from './home/lesson-details/lesson-details.component';
 
 @NgModule({
   imports: [
@@ -24,7 +28,11 @@ import { LessonsService } from './common/services/lessons.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+    CoursesListComponent,
+    CourseDetailsComponent,
+    LessonsListComponent,
+    LessonDetailsComponent
   ],
   providers: [CoursesService, LessonsService],
   bootstrap: [AppComponent]

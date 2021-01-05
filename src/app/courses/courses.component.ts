@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../common/services/courses.service';
+import {Course} from '../common/models/Course'
 
 @Component({
   selector: 'app-courses',
@@ -7,38 +8,52 @@ import { CoursesService } from '../common/services/courses.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  course: {
-    id: number,
-    title: string,
-    description: string,
-    percentComplete: number,
-    favorite: boolean
-  }
 
   constructor(private coursesService: CoursesService) { }
 
-  courses = this.coursesService.all()
+  course: Course = {
+    id: null,
+    title: '',
+    description: '',
+    percentComplete: 0,
+    favorite: false
+  }
+
+  courses: Course[]
+
+  ngOnInit(): void {
+    this.reloadCourses()
+  } 
 
   selectCourse(course){
     return this.course = course
   }
 
   save(form){
-    this.coursesService.save(form)
-    
+    if(this.course.id){
+      return this.coursesService.update(form.value, this.course, ).subscribe(() => {
+        this.reloadCourses()
+        
+      })
+
+    } else {
+      return this.coursesService.create(form.value).subscribe(() => this.reloadCourses())
+    }
+
   }
 
   deleteCourse(course){
-    this.coursesService.delete(course)
+    this.coursesService.delete(course).subscribe(() => {
+      this.reloadCourses()
 
-    if(course === this.course) this.selectCourse({})
+    })
   }
 
-  formatLabel(value: number){
-    return value + '%'
-  }
-
-  ngOnInit(): void {
+  reloadCourses(){
+    return this.coursesService.all().subscribe((courses: Course[]) => {
+      this.selectCourse({})
+      return this.courses = courses
+    })
   }
 
 }

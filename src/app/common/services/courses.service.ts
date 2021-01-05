@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,48 +6,27 @@ import { Injectable } from '@angular/core';
 })
 export class CoursesService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  private courses = [
-    {
-      id: 1,
-      title: 'Angular 9 Fundamentals',
-      description: 'Learn the fundamentals of Angular 9',
-      percentComplete: 26,
-      favorite: false
-    },
-    {
-      id: 2,
-      title: 'Javascript the Really HARD parts',
-      description: 'Nothing to describe about that one.',
-      percentComplete: 50,
-      favorite: false
-    },
-    {
-      id: 3,
-      title: 'Rust for Js developers',
-      description: 'Rust is hard',
-      percentComplete: 20,
-      favorite: true
-    }
-  ];
+  baseURL = 'http://localhost:3000/courses'
 
   all(){
-    return this.courses
+    return this.httpClient.get(this.baseURL)
   }
 
   find(id){
-
+    return this.httpClient.get(`${this.baseURL}/${id}`)
   }
 
   delete(course){
-    for(let item in this.courses){
-      if(this.courses[item].id === course.id) return this.courses.splice(Number(item), 1)
-    }
+    return this.httpClient.delete(`${this.baseURL}/${course.id}`, course.id)
   }
 
-  save(form){
-    console.log(form.value);
-    
+  create(data){
+    return this.httpClient.post(this.baseURL, data)
+  }
+
+  update(data, course){
+    return this.httpClient.put(`${this.baseURL}/${course.id}`, data)
   }
 }

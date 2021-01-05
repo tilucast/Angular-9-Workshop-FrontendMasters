@@ -1,0 +1,18 @@
+<mat-card-content>
+
+<!--  <mat-form-field>
+    <mat-label>Theme Color</mat-label>
+    <input matInput [(ngModel)]="themeColor" placeholder="Ex. Red">
+    </mat-form-field>
+
+    <span [style.color]="themeColor">{{themeColor}}</span>
+
+    <button mat-button (click)="updateColor()">Some color</button> -->
+
+    <mat-list *ngIf="lessons">
+    <mat-list-item *ngFor="let lesson of lessons" (click)="selectedLesson.emit(lesson)">
+        {{lesson.title}}
+    </mat-list-item>
+    </mat-list>
+
+</mat-card-content>
