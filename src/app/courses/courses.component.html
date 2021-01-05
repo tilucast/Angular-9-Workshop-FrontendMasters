@@ -3,12 +3,23 @@
         <mat-card>
         <mat-card-header>
             <mat-card-title>
-            Course List
+                Course List
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
 
             <!-- COURSES LIST -->
+            <mat-list>
+
+                <mat-list-item *ngFor="let course of courses" (click)="selectCourse(course)">
+                    {{course.title}}
+                    <button (click)="deleteCourse(course)" mat-icon-button color="warn" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                
+
+            </mat-list>
 
         </mat-card-content>
         </mat-card>
@@ -21,16 +32,70 @@
                     Select Course
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content>
-            
-            <!-- COURSE FORM -->
 
-            </mat-card-content>
-            <mat-card-actions>
+            <form *ngIf="course" #form="ngForm" (submit)="save(form)">
 
-            <!-- COURSE ACTIONS -->
+                <mat-card-content>
+                
+                <!-- COURSE FORM -->
 
-            </mat-card-actions>
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input
+                            name="title"
+                            matInput 
+                            [(ngModel)]="course.title" 
+                            type="text" 
+                            placeholder="Title"
+                            required
+                        >
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <input
+                            name="description"
+                            matInput 
+                            [(ngModel)]="course.description" 
+                            type="text" 
+                            placeholder="Description"
+                        >
+                    </mat-form-field>
+
+                    <article>
+                        <mat-slider
+                            thumbLabel
+                            tickInterval="1"
+                            [displayWith]="formatLabel"
+                            min="1"
+                            max="100"
+                            name="percentComplete"
+                            [(ngModel)]="course.percentComplete"
+                        >
+
+                        </mat-slider>
+                    </article>
+
+                    <article>
+                        <mat-slide-toggle
+                            [(ngModel)]="course.favorite"
+                            name="favorite"
+                        >
+
+                        </mat-slide-toggle>
+                    </article>
+                    
+                </mat-card-content>
+                <mat-card-actions>
+
+                <!-- COURSE ACTIONS -->
+
+                <button [disabled]="form.invalid" type="submit" color="primary" mat-raised-button>Save</button>
+
+                </mat-card-actions>
+
+            </form>
+
         </mat-card>
     </div>
 </div>
