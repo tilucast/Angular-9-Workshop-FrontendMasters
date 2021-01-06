@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MockUsersComponent implements OnInit {
 
+  title="Hello mock"
+
   constructor() { }
 
   ngOnInit(): void {

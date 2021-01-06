@@ -16,10 +16,15 @@ describe('MockUsersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MockUsersComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should have the correct title', () => {
+    expect(component.title).toBe('ex')
+  })
+
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+    
+  // });
 });
