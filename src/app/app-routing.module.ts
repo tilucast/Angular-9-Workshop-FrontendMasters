@@ -7,6 +7,14 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'courses', component: CoursesComponent },
+  { 
+    path: 'login', 
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./mock-users/mock-users.module').then(m => m.MockUsersModule)
+  },
   { path: '**', redirectTo: '/home' }
 ];
 
